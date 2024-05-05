@@ -21,8 +21,7 @@ jobs:
         distribution: 'adopt'
 
     - name: Build with Maven
-      run: mvn clean install -B
-      working-directory: /home/runner/work/porte_monnaie/porte_monnaie
+      run: mvn -f C:\Users\merihenebksh\mon-projet-test\pom.xml clean install -B
 
   test:
     name: Test
@@ -41,8 +40,7 @@ jobs:
         distribution: 'adopt'
 
     - name: Run Tests
-      run: mvn test
-      working-directory: /home/runner/work/porte_monnaie/porte_monnaie
+      run: mvn -f C:\Users\merihenebksh\mon-projet-test\pom.xml test
 
   deploy:
     name: Deployment
@@ -58,4 +56,3 @@ jobs:
       run: |
         # Commandes pour déployer votre application dans un environnement de production
         # Exemple: Utiliser des outils comme Docker, Ansible, ou simplement copier les fichiers sur un serveur
-      working-directory: /home/runner/work/porte_monnaie/porte_monnaie
