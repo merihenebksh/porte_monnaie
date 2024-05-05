@@ -1,0 +1,67 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up JDK
+      uses: actions/setup-java@v2
+      with:
+        java-version: '17'
+        distribution: 'adopt'
+
+    - name: Navigate to project directory
+      run: cd porte_monnaie
+
+    - name: Build with Maven
+      run: mvn clean install -B
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+
+    needs: build
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up JDK
+      uses: actions/setup-java@v2
+      with:
+        java-version: '17'
+        distribution: 'adopt'
+
+    - name: Navigate to project directory
+      run: cd porte_monnaie
+
+    - name: Run Tests
+      run: mvn test
+
+  deploy:
+    name: Deployment
+    runs-on: ubuntu-latest
+
+    needs: test
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Navigate to project directory
+      run: cd porte_monnaie
+
+    - name: Deploy to production
+      run: |
+        # Commandes pour déployer votre application dans un environnement de production
+        # Exemple: Utiliser des outils comme Docker, Ansible, ou simplement copier les fichiers sur un serveur
