@@ -21,7 +21,7 @@ jobs:
         distribution: 'adopt'
 
     - name: Build with Maven
-      run: mvn clean install -B
+      run: mvn -f mon_projet_test/pom.xml clean install -B
 
   test:
     name: Test
@@ -40,7 +40,7 @@ jobs:
         distribution: 'adopt'
 
     - name: Run Tests
-      run: mvn test
+      run: mvn -f mon_projet_test/pom.xml test
 
   deploy:
     name: Deployment
