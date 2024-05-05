@@ -20,11 +20,9 @@ jobs:
         java-version: '17'
         distribution: 'adopt'
 
-    - name: Navigate to project directory
-      run: cd porte_monnaie
-
     - name: Build with Maven
       run: mvn clean install -B
+      working-directory: /home/runner/work/porte_monnaie/porte_monnaie
 
   test:
     name: Test
@@ -42,11 +40,9 @@ jobs:
         java-version: '17'
         distribution: 'adopt'
 
-    - name: Navigate to project directory
-      run: cd porte_monnaie
-
     - name: Run Tests
       run: mvn test
+      working-directory: /home/runner/work/porte_monnaie/porte_monnaie
 
   deploy:
     name: Deployment
@@ -58,10 +54,8 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Navigate to project directory
-      run: cd porte_monnaie
-
     - name: Deploy to production
       run: |
         # Commandes pour déployer votre application dans un environnement de production
         # Exemple: Utiliser des outils comme Docker, Ansible, ou simplement copier les fichiers sur un serveur
+      working-directory: /home/runner/work/porte_monnaie/porte_monnaie
