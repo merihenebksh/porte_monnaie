@@ -56,4 +56,3 @@ jobs:
       run: |
         # Commandes pour déployer votre application dans un environnement de production
         # Exemple: Utiliser des outils comme Docker, Ansible, ou simplement copier les fichiers sur un serveur
-
