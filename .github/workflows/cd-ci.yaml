@@ -3,7 +3,7 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build:
@@ -20,8 +20,11 @@ jobs:
         java-version: '17'
         distribution: 'adopt'
 
+    - name: Navigate to project directory
+      run: cd mon-projet-test
+
     - name: Build with Maven
-      run: mvn clean install -B
+      run: mvn -f pom.xml clean install -B
 
   test:
     name: Test
@@ -39,8 +42,11 @@ jobs:
         java-version: '17'
         distribution: 'adopt'
 
+    - name: Navigate to project directory
+      run: cd mon-projet-test
+
     - name: Run Tests
-      run: mvn test
+      run: mvn -f pom.xml test
 
   deploy:
     name: Deployment
@@ -51,6 +57,9 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+
+    - name: Navigate to project directory
+      run: cd mon-projet-test
 
     - name: Deploy to production
       run: |
